@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gesture-Based Particle System</title>
+    
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- MediaPipe Hands -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div id="loader">
+        <h1 style="margin-bottom: 20px;">Particle Hand Control</h1>
+        <button class="loader-btn" onclick="startApp()">Start Experience</button>
+        <p style="color: #666; margin-top: 15px;">Camera access required</p>
+    </div>
+
+    <!-- UI Overlay -->
+    <button id="fs-btn" onclick="toggleFullScreen()">⛶</button>
+    
+    <div id="ui-panel">
+        <h2>Controls</h2>
+        
+        <div class="control-group">
+            <label>Shape Pattern</label>
+            <div class="btn-grid">
+                <button onclick="setShape('sphere')" class="active" id="btn-sphere">Sphere</button>
+                <button onclick="setShape('cube')" id="btn-cube">Cube</button>
+                <button onclick="setShape('torus')" id="btn-torus">Torus</button>
+                <button onclick="setShape('helix')" id="btn-helix">Helix</button>
+                <button onclick="setShape('love')" id="btn-love">Love</button>
+                <button onclick="setShape('dna')" id="btn-dna">DNA</button>
+                <button onclick="setShape('galaxy')" id="btn-galaxy">Galaxy</button>
+                <button onclick="setShape('pyramid')" id="btn-pyramid">Pyramid</button>
+                <button onclick="setShape('star')" id="btn-star">Star</button>
+            </div>
+        </div>
+
+        <div class="control-group color-wrapper">
+            <label>Particle Color</label>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <input type="color" id="colorPicker" value="#00d2ff">
+                <button onclick="toggleRainbowMode()" style="flex: 1;">Magic Color</button>
+            </div>
+        </div>
+
+        <div id="status">Waiting for hand...</div>
+    </div>
+
+    <!-- Video Elements -->
+    <video id="input_video"></video>
+    <canvas id="webcam-preview"></canvas>
+
+    <!-- 3D Canvas -->
+    <canvas id="c"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
