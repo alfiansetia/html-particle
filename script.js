@@ -259,8 +259,9 @@ function animate() {
   // Follow hand position
   if (state.handDetected) {
     // Map normalized hand position to 3D world space
+    // Added vertical offset (offsetY) to keep object more visible
     const targetX = state.handPosition.x * 12;
-    const targetY = state.handPosition.y * 8;
+    const targetY = state.handPosition.y * 8 + 2; // Added +2 vertical offset
 
     particles.position.x += (targetX - particles.position.x) * config.lerpSpeed;
     particles.position.y += (targetY - particles.position.y) * config.lerpSpeed;
@@ -294,7 +295,7 @@ function animate() {
       // Each finger tip pulls nearby particles
       state.fingertips.forEach((f) => {
         const fx = f.x * 12; // Map to world space
-        const fy = f.y * 8;
+        const fy = f.y * 8 + 2; // Offset matching the particle container
         const fz = 0; // Keeping depth simple for now
 
         const dx = fx - positions[i3];
